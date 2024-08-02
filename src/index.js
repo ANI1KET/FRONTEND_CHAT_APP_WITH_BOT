@@ -22,7 +22,7 @@ root.render(
       </SettingsProvider>
     </ReduxProvider>
   </HelmetProvider>
-  //  <React.StrictMode>
+  // </React.StrictMode>
 );
 
 reportWebVitals();

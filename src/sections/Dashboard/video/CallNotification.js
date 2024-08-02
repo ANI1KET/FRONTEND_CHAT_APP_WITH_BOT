@@ -15,7 +15,6 @@ import {
   UpdateVideoCallDialog,
 } from "../../../redux/slices/videoCall";
 import { socket } from "../../../socket";
-import { AWS_S3_REGION, S3_BUCKET_NAME } from "../../../config";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -26,25 +25,13 @@ const CallNotification = ({ open, handleClose }) => {
   const { user } = useSelector((state) => state.app);
   const [call_details] = useSelector((state) => state.videoCall.call_queue);
 
-  const handleAccept = () => {
-    socket.emit("video_call_accepted", { ...call_details });
-    dispatch(UpdateVideoCallDialog({ state: true }));
-  };
-
-  const handleDeny = () => {
-    //
-    socket.emit("video_call_denied", { ...call_details });
-    dispatch(ResetVideoCallQueue());
-    handleClose();
-  };
-
   return (
     <>
       <Dialog
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleDeny}
+        // onClose={handleDeny}
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogContent>
@@ -52,22 +39,28 @@ const CallNotification = ({ open, handleClose }) => {
             <Stack>
               <Avatar
                 sx={{ height: 100, width: 100 }}
-                src={`https://${S3_BUCKET_NAME}.s3.${AWS_S3_REGION}.amazonaws.com/${call_details?.from_user?.avatar}`}
+                src={``}
               />
             </Stack>
             <Stack>
               <Avatar
                 sx={{ height: 100, width: 100 }}
-                src={`https://${S3_BUCKET_NAME}.s3.${AWS_S3_REGION}.amazonaws.com/${user?.avatar}`}
+                src={``}
               />
             </Stack>
           </Stack>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleAccept} variant="contained" color="success">
+          <Button
+            variant="contained" color="success"
+          // onClick={handleAccept} 
+          >
             Accept
           </Button>
-          <Button onClick={handleDeny} variant="contained" color="error">
+          <Button
+            variant="contained" color="error"
+          // onClick={handleDeny} 
+          >
             Deny
           </Button>
         </DialogActions>

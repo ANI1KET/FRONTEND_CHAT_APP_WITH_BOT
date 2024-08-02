@@ -79,6 +79,19 @@ const Friends = ({ open, handleClose }) => {
     setValue(newValue);
   };
 
+  const renderContent = () => {
+    switch (value) {
+      case 0:
+        return <UsersList />;
+      case 1:
+        return <FriendsList />;
+      case 2:
+        return <RequestsList />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <Dialog
       fullWidth
@@ -100,23 +113,7 @@ const Friends = ({ open, handleClose }) => {
       <DialogContent>
         <Stack sx={{ height: "100%" }}>
           <Stack spacing={1}>
-            {
-              (() => {
-                switch (value) {
-                  case 0:
-                    return <UsersList />;
-
-                  case 1:
-                    return <FriendsList />;
-
-                  case 2:
-                    return <RequestsList />;
-
-                  default:
-                    break;
-                }
-              })()
-            }
+            {renderContent()}
           </Stack>
         </Stack>
       </DialogContent>

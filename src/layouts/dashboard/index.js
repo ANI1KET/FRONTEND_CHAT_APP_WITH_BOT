@@ -53,14 +53,14 @@ const DashboardLayout = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      window.onload = function () {
-        if (!window.location.hash) {
-          window.location = window.location + "#loaded";
-          // window.location.reload();
-        }
-      };
+      // window.onload = function () {
+      //   if (!window.location.hash) {
+      //     window.location = window.location + "#loaded";
+      //     // window.location.reload();
+      //   }
+      // };
 
-      window.onload();
+      // window.onload();
 
       if (!socket) {
         connectSocket(user_id);
@@ -140,7 +140,7 @@ const DashboardLayout = () => {
       socket?.off("request_accepted");
       socket?.off("request_sent");
     };
-  }, [current_conversation, isLoggedIn, user_id]);
+  }, [current_conversation, dispatch, isLoggedIn, user_id]);
 
   if (!isLoggedIn) {
     return <Navigate to={"/auth/login"} />;

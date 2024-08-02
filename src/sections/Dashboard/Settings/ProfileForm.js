@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import FormProvider from "../../../components/hook-form/FormProvider";
 import { RHFTextField, RHFUploadAvatar } from "../../../components/hook-form";
 import { UpdateUserProfile } from "../../../redux/slices/app";
-import { AWS_S3_REGION, S3_BUCKET_NAME } from "../../../config";
 
 import useResponsive from "../../../hooks/useResponsive";
 
@@ -29,7 +28,7 @@ const ProfileForm = () => {
   const defaultValues = {
     firstName: user?.firstName,
     about: user?.about,
-    avatar: `https://${S3_BUCKET_NAME}.s3.${AWS_S3_REGION}.amazonaws.com/${user?.avatar}`,
+    avatar: ``,
   };
 
   const methods = useForm({

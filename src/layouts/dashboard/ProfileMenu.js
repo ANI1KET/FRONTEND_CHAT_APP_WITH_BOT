@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { LogoutUser } from "../../redux/slices/auth";
 import { socket } from "../../socket";
 import { useNavigate } from "react-router-dom";
-import { AWS_S3_REGION, S3_BUCKET_NAME } from "../../config";
 import { SelectConversation } from "../../redux/slices/app"
 
 const ProfileMenu = () => {
@@ -25,7 +24,7 @@ const ProfileMenu = () => {
   const user_id = window.localStorage.getItem("user_id");
 
   const user_name = user?.firstName;
-  const user_img = `https://${S3_BUCKET_NAME}.s3.${AWS_S3_REGION}.amazonaws.com/${user?.avatar}`;
+  const user_img = ``;
 
   return (
     <>

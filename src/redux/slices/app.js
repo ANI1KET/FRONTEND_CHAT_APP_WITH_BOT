@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
-// import S3 from "../../utils/s3";
 import { v4 } from 'uuid';
-import S3 from "../../utils/s3";
-import { S3_BUCKET_NAME } from "../../config";
 
 const initialState = {
   user: {},
@@ -184,7 +181,6 @@ export function FetchFriendRequests() {
     await axios
       .get(
         "/user/get-requests",
-
         {
           headers: {
             "Content-Type": "application/json",
@@ -253,27 +249,10 @@ export const UpdateUserProfile = (formValues) => {
     const key = v4();
 
     try {
-      S3.getSignedUrl(
-        "putObject",
-        { Bucket: S3_BUCKET_NAME, Key: key, ContentType: `image/${file.type}` },
-        async (_err, presignedURL) => {
-          await fetch(presignedURL, {
-            method: "PUT",
-
-            body: file,
-
-            headers: {
-              "Content-Type": file.type,
-            },
-          });
-        }
-      );
     }
     catch (error) {
       console.log(error);
     }
-
-
 
     axios
       .patch(

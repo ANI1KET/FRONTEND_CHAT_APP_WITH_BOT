@@ -151,21 +151,6 @@ const Chats = () => {
                 return <ChatElement {...el} key={idx} />;
               })
             }
-            {/* {
-              conversations.filter((el) => !el.pinned).map((el, idx) => {
-                return <ChatElement {...el} key={idx} />;
-              })
-            }
-            {
-              conversations.filter((el) => !el.pinned).map((el, idx) => {
-                return <ChatElement {...el} key={idx} />;
-              })
-            }
-            {
-              conversations.filter((el) => !el.pinned).map((el, idx) => {
-                return <ChatElement {...el} key={idx} />;
-              })
-            } */}
           </Stack>
         </Stack>
 
